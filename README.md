@@ -111,25 +111,18 @@ Follow the guidelines in the [`OculusReader`](https://github.com/rail-berkeley/o
 
 ## How to Run
 
-### Unified teleop script (recommended)
 ```bash
 # Meta Quest
-python teleop_spot.py --teleop-type meta --use-depth --force-limit-disable
+python teleop_spot.py --teleop-type meta
 
 # SpaceMouse
 python teleop_spot.py --teleop-type spacemouse
 
 # Keyboard only (base control, no arm)
 python teleop_spot.py --teleop-type keyboard
-```
 
-### Standalone scripts
-```bash
-# Meta Quest only
-python teleop_spot_meta.py
-
-# SpaceMouse only
-python teleop_spot_spacemouse.py
+# if you want to record camera depth use: --use-depth
+# to disable force limit use: --force-limit-disable
 ```
 
 ---
@@ -148,9 +141,7 @@ spot_teleop/                  <- Python package
     ├── spot_utils.py         # Math & conversion helpers
     └── teleop_inputs.py      # Meta / SpaceMouse / Keyboard input helpers
 
-teleop_spot.py                <- Unified teleop entry point
-teleop_spot_meta.py           <- Meta Quest-only teleop
-teleop_spot_spacemouse.py     <- SpaceMouse-only teleop
+teleop_spot.py                <- Teleop entry point (meta / spacemouse / keyboard)
 create_dataset.py             <- Build .h5 dataset from .npz demos
 replay_hdf5.py                <- Replay recorded actions on Spot
 pyproject.toml                <- Package metadata & dependencies
