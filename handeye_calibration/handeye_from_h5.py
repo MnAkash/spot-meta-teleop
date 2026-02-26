@@ -17,7 +17,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 
-from utils.spot_utils import quat_to_matrix  # noqa: E402
+from spot_teleop.utils.spot_utils import quat_to_matrix  # noqa: E402
 
 FOVX_DEG = 60.18
 FOVY_DEG = 46.99

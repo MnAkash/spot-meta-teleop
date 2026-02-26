@@ -16,12 +16,12 @@ from typing import Tuple, Dict
 
 from bosdyn.client.frame_helpers import get_a_tform_b, VISION_FRAME_NAME, BODY_FRAME_NAME
 from bosdyn.client.math_helpers  import SE3Pose, Quat
-from spot_controller import SpotRobotController
+from spot_teleop.spot_controller import SpotRobotController
 import pyspacemouse
 from pynput import keyboard
 
-from demo_recorder import DemoRecorder
-from utils.spot_utils import mat_to_se3, map_controller_to_robot
+from spot_teleop.demo_recorder import DemoRecorder
+from spot_teleop.utils.spot_utils import mat_to_se3, map_controller_to_robot
 import logging
 
 keys_pressed_once = set()   # Keys triggered this press

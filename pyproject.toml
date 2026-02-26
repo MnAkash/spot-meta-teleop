@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spot_teleop"
+version = "0.1.0"
+description = "Boston Dynamics Spot teleoperation with Meta Quest 3, SpaceMouse, and keyboard"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Moniruzzaman Akash", email = "moniruzzaman.akash@unh.edu"},
+]
+
+dependencies = [
+    "numpy",
+    "pure-python-adb",
+    "pyyaml>=6.0",
+    "opencv-python>=4.5.4",
+    "protobuf==4.22.1",
+    "bosdyn-api==5.0.0",
+    "bosdyn-client==5.0.0",
+    "bosdyn-core==5.0.0",
+    "bosdyn-mission==5.0.0",
+    "bosdyn-choreography-client==5.0.0",
+    "bosdyn-orbit==5.0.0",
+    "h5py>=3.13.1",
+]
+
+[project.optional-dependencies]
+spacemouse = ["pyspacemouse", "pynput"]
+realsense = ["pyrealsense2"]
+viz = ["matplotlib"]
+all = ["spot_teleop[spacemouse,realsense,viz]"]
+
+[tool.setuptools.packages.find]
+include = ["spot_teleop*"]

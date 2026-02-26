@@ -36,9 +36,13 @@ from google.protobuf import duration_pb2
 from bosdyn.client.math_helpers  import SE3Pose, Quat
 from bosdyn.client.gripper_camera_param import GripperCameraParamClient
 from bosdyn.client.image import ImageClient
-from spot_images import SpotImages
+try:
+    from spot_teleop.spot_images import SpotImages
+    from spot_teleop.utils.spot_utils import quat_to_matrix, matrix_to_quat, rot6d_to_matrix, image_to_cv
+except ImportError:
+    from .spot_images import SpotImages
+    from .utils.spot_utils import quat_to_matrix, matrix_to_quat, rot6d_to_matrix, image_to_cv
 from bosdyn.client.exceptions import InternalServerError
-from utils.spot_utils import quat_to_matrix, matrix_to_quat, rot6d_to_matrix, image_to_cv
 import logging, cv2
 
 

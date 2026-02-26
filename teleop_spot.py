@@ -33,12 +33,12 @@ import numpy as np
 from bosdyn.client.frame_helpers import BODY_FRAME_NAME, get_a_tform_b
 from bosdyn.client.math_helpers import Quat
 
-from camera_streamer import CameraStreamer
-from demo_recorder import DemoRecorder
-from reader import get_connecteed_device_ip
-from spot_controller import SpotRobotController
-from utils.spot_utils import map_controller_to_robot, mat_to_se3
-from utils.teleop_inputs import KeyboardInputHelper, MetaInputHelper, SpaceMouseInputHelper
+from spot_teleop.camera_streamer import CameraStreamer
+from spot_teleop.demo_recorder import DemoRecorder
+from spot_teleop.reader import get_connecteed_device_ip
+from spot_teleop.spot_controller import SpotRobotController
+from spot_teleop.utils.spot_utils import map_controller_to_robot, mat_to_se3
+from spot_teleop.utils.teleop_inputs import KeyboardInputHelper, MetaInputHelper, SpaceMouseInputHelper
 
 import logging
 

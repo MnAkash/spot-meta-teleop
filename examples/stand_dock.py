@@ -1,7 +1,7 @@
 import os
 import h5py, time
 import numpy as np
-from spot_controller import SpotRobotController
+from spot_teleop.spot_controller import SpotRobotController
 from bosdyn.client.math_helpers  import SE3Pose, Quat
 
 robot_ip = os.environ.get("SPOT_ROBOT_IP", "192.168.1.138")

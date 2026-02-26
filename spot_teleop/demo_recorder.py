@@ -8,7 +8,7 @@ demo_recorder.py  –  Continuous Spot logger for diffusion-policy demos
 ---------------------------------------------------------------------
 Quick use inside control_spot.py
 ---------------------------------------------------------------------
-from demo_recorder import DemoRecorder
+from spot_teleop.demo_recorder import DemoRecorder
 ...
 self.recorder = DemoRecorder(
         robot=self.robot,
@@ -34,9 +34,14 @@ from typing import Dict, Optional, List
 
 from bosdyn.api import image_pb2, geometry_pb2
 from bosdyn.client import math_helpers
-from spot_images import CameraSource
-from utils.spot_utils import pose_to_vec, frame_pose, image_to_cv
-from camera_streamer import CameraStreamer
+try:
+    from spot_teleop.spot_images import CameraSource
+    from spot_teleop.utils.spot_utils import pose_to_vec, frame_pose, image_to_cv
+    from spot_teleop.camera_streamer import CameraStreamer
+except ImportError:
+    from .spot_images import CameraSource
+    from .utils.spot_utils import pose_to_vec, frame_pose, image_to_cv
+    from .camera_streamer import CameraStreamer
 
 
 def play_sound(path: str, block = False):

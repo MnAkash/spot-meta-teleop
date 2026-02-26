@@ -16,11 +16,11 @@ from typing import Tuple, Dict
 import threading
 
 from bosdyn.client.frame_helpers import get_a_tform_b, VISION_FRAME_NAME, BODY_FRAME_NAME
-from spot_controller import SpotRobotController
+from spot_teleop.spot_controller import SpotRobotController
 
-from reader import OculusReader, get_connecteed_device_ip
-from demo_recorder import DemoRecorder
-from utils.spot_utils import mat_to_se3, map_controller_to_robot
+from spot_teleop.reader import OculusReader, get_connecteed_device_ip
+from spot_teleop.demo_recorder import DemoRecorder
+from spot_teleop.utils.spot_utils import mat_to_se3, map_controller_to_robot
 import logging
 try:
     from pynput import keyboard

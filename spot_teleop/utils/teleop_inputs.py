@@ -6,7 +6,10 @@ import threading
 import time
 from typing import Dict, Tuple
 
-from reader import OculusReader
+try:
+    from spot_teleop.reader import OculusReader
+except ImportError:
+    from ..reader import OculusReader
 
 try:
     from pynput import keyboard as pynput_keyboard
