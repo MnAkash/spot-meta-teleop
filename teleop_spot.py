@@ -13,7 +13,9 @@ The script assumes you already have:
     - The `reader.py` module in the same directory, which reads the Meta Quest controller
 
 Usage example:
-    python teleop_spot.py --teleop-type meta
+    python teleop_spot.py --teleop-type meta --use-depth --force-limit-disable
+    python teleop_spot.py --teleop-type spacemouse
+    python teleop_spot.py --teleop-type keyboard
 
 
 Author: Moniruzzaman Akash
