@@ -106,6 +106,8 @@ class SpotRobotController:
             print("> Robot is powered on.")
         except InternalServerError as e:
             print(f"[!] Error powering on robot: {e}")
+            print("Running fault check ...")
+            self.check_for_faults()
             print("Reboot the robot and try again.")
             sys.exit(1)
         
@@ -113,6 +115,39 @@ class SpotRobotController:
 
         signal.signal(signal.SIGINT, self._clean_shutdown)
 
+
+    def check_for_faults(self) -> bool:
+        """Print current fault state. Returns True if any active faults."""
+        state = self.state_client.get_robot_state()
+
+        power_state = getattr(getattr(state, "power_state", None), "motor_power_state", None)
+        power_fault = getattr(getattr(state, "power_state", None), "motor_power_state_fault", None)
+        print(f"Motor power state: {power_state}")
+        if power_fault is not None:
+            print(f"Motor power fault flag: {power_fault}")
+
+        system_faults = list(getattr(getattr(state, "system_fault_state", None), "faults", []))
+        behavior_faults = list(getattr(getattr(state, "behavior_fault_state", None), "faults", []))
+
+        if not system_faults and not behavior_faults:
+            print("No active system or behavior faults.")
+            return False
+
+        print(f"Active system faults: {len(system_faults)}")
+        for f in system_faults:
+            code = getattr(f, "code", "unknown")
+            name = getattr(f, "name", "")
+            msg = getattr(f, "error_message", "") or getattr(f, "message", "")
+            print(f"  SystemFault code={code} name={name} message={msg}")
+
+        print(f"Active behavior faults: {len(behavior_faults)}")
+        for f in behavior_faults:
+            code = getattr(f, "code", "unknown")
+            name = getattr(f, "name", "")
+            msg = getattr(f, "error_message", "") or getattr(f, "message", "")
+            print(f"  BehaviorFault code={code} name={name} message={msg}")
+
+        return True
 
     def _clean_shutdown(self, *_):
         print("\n[!] Shutting down VR teleop ...")
