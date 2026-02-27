@@ -11,5 +11,16 @@ password = os.environ.get("BOSDYN_CLIENT_PASSWORD", "password")
 print(f"Connecting to Spot at {robot_ip} ...")
 print(f"user: {user}, password: {password}")
 
-controller = SpotRobotController(robot_ip, user, password)
-controller.dock()
+spot = SpotRobotController(robot_ip, user, password)
+spot.undock()
+
+time.sleep(3.0)
+
+# pose=[0.7, 0, 0.2, 0.8509035, 0, 0, 0.525322]
+spot.reset_pose()  # x,y,z, qx,qy,qz,qw
+
+time.sleep(5.0)
+spot.stow_arm()
+
+time.sleep(3.0)
+spot.dock()
