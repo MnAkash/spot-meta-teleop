@@ -10,3 +10,5 @@ bosdyn-mission==5.0.0
 bosdyn-choreography-client==5.0.0
 bosdyn-orbit==5.0.0
 h5py>=3.13.1
+pynput>=1.7.6
+pyrealsense2>=2.50.0
